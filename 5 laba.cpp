@@ -1,35 +1,51 @@
 ﻿#include <stdio.h>
-#include <conio.h>
-#include <locale.h>
 #include <stdlib.h>
-#include <iostream>
+#include <conio.h>
 #define M 100
 
 int main()
 {
-	setlocale(LC_ALL, "Russian");
-	int ms[M];
-	int m, i, j, temp;
-	printf("Введите кол-во элементов в массиве");
+	int ms[M][M];
+	int i, j, x, m, temp;
+	printf("Enter of Array size:");
 	scanf_s("%d", &m);
-	printf("Заполните массив: ");
+	printf("Enter elements of Array");
 	for (i = 0; i < m; i++)
-		scanf_s("%d", &ms[i]);
-	for (i = 0; i < m - 1; i++)
 	{
-		for (j = 0; j < m - i - 1; j++)
+		for (j = 0; j < m; j++)
+			scanf_s("%d", &ms[i][j]);
+	}
+	printf("\nArray:\n");
+	for (i = 0; i < m; i++)
+	{
+		printf("\n");
+		for (j = 0; j < m; j++)
+			printf("%4d", ms[i][j]);
+	}
+	for (i = 0; i < m; i++)
+	{
+		for (j = 0; j < m - 1; j++)
 		{
-			if (ms[j] < ms[j + 1])
+			for (x = 0; x < m - i - 1; x++)
 			{
-				temp = ms[j];
-				ms[j] = ms[j + 1];
-				ms[j + 1] = temp;
+				if (ms[j][x] < ms[j][x + 1])
+				{
+					temp = ms[j][x];
+					ms[j][x] = ms[j][x + 1];
+					ms[j][x + 1] = temp;
+
+				}
 			}
 		}
 	}
-	for (j = 0; j < m; j++)
+	printf("\nResult:\n");
+	for (i = 0; i < m; i++)
 	{
-		printf("%3d", ms[j]);
+		printf("\n");
+		for (j = 0; j < m; j++)
+			printf("%4d", ms[i][j]);
 	}
+
+
 
 }
